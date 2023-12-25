@@ -11,8 +11,8 @@ import java.util.function.Predicate;
 public class PredicateUsage {
 
     public void check() {
-        System.out.println("Example 1 and 2: simple usage");
         //Example 1: Simple usage
+        System.out.println("Example 1 and 2: simple usage");
         Predicate<Integer> p = i -> (i > 10);
         System.out.println(p.test(20)); // true
         System.out.println(p.test(5)); // false
