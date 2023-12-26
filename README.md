@@ -67,3 +67,54 @@ interface Supplier <R> {
 This demo also includes examples how to use and(), or(), negate() methods of Predicate interface, and andThen(), compose() methods of Function and Consumer interfaces.
 
 ### 2. Streams
+
+Streams provide a powerful and efficient way to process data in a functional and declarative manner and supports such functional-style operations like map, filter, and reduce, which enable developers to express data processing logic in a more readable way. A Java stream does not alter the source. Instead, it generates output by pipelining methods accordingly. 
+In this demo project, the main methods that were practiced include:
+
+**1 filter ()**
+
+This method is used for filtering out elements from a stream that match a particular Predicate in Java. These filtered elements constitute a new stream.
+
+```bash
+List<Integer> evenNums =  Stream.of(1, 2, 3, 4, 5)          // Stream source
+    .filter(x -> x % 2 == 0)      // Intermediate operation
+    .collect(Collectors.toList()) // Terminal operation
+```
+
+**2 map()**
+
+This method is used for producing a new stream by performing mapped functions on the elements of the original input stream. It is possible that the new stream has a different data type.
+
+```bash
+List<String> vehicles = Arrays.asList("bus", "car", "bicycle", "plane", "train");
+      vehicles.stream().map(name -> name.length()).forEach(System.out::println); // 3, 3, 7, 5, 5
+```
+
+**3 flatMap()**
+
+This method is used for producing a new stream by performing mapped functions on the element’s arrays of the original input streams. 
+
+```bash
+  String[][] array = new String[][]{{"a", "b"}, {"c", "d"}, {"e", "f"}};
+
+  List<String> collect = Stream.of(array)     // Stream<String[]>
+          .flatMap(Stream::of)                // Stream<String>
+          .filter(x -> !"a".equals(x))        // filter out the a
+          .collect(Collectors.toList());      // return a List
+
+  collect.forEach(System.out::println); // b, c, d, e, f
+```
+
+**Terminal and non-terminal operations**
+
+The Stream interface has a selection of terminal and non-terminal operations. A non-terminal stream operation is an operation that adds a listener to the stream without doing anything else. A terminal stream operation is an operation that starts the internal iteration of the elements, calls all the listeners, and returns a result. Throughout this demo project, both non-terminal and terminal methods, as illustrated in the picture below, were applied.
+
+![SpringBootOperations](https://github.com/juzyz/JavaFeatures/assets/96008515/068f8574-559d-4b64-a45f-74291529acbc)
+
+
+**Parallel Stream**
+
+The powerful feature of streams is that stream pipelines may execute either sequentially or in parallel. All collections support the parallelStream() method, which returns a possibly parallel stream. 
+When a stream executes in parallel, the Java runtime divides the stream into multiple sub-streams. The aggregate operations iterate over and process these sub-streams in parallel and then combine the results.
+
+![SpringBootParallelSteams](https://github.com/juzyz/JavaFeatures/assets/96008515/26235e49-0632-4d81-a212-0fd35600dc1c)
