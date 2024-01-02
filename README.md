@@ -118,3 +118,5 @@ The powerful feature of streams is that stream pipelines may execute either sequ
 When a stream executes in parallel, the Java runtime divides the stream into multiple sub-streams. The aggregate operations iterate over and process these sub-streams in parallel and then combine the results.
 
 ![SpringBootParallelSteams](https://github.com/juzyz/JavaFeatures/assets/96008515/26235e49-0632-4d81-a212-0fd35600dc1c)
+
+For a more extensive array of collection stream methods, explore the java.util package in Java, which provides additional utility classes and functionalities.
